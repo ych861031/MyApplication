@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
             thread.interrupt();
             e.printStackTrace();
         }finally {
+            editText.setText("");
+            InputMethodManager im = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            im.hideSoftInputFromWindow(editText.getWindowToken(),0);
             Toast.makeText(this,word,Toast.LENGTH_LONG).show();
         }
 
